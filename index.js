@@ -5,11 +5,13 @@ for (i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener("click", function () {
         let buttonInner = this.innerHTML;
         makeSound(buttonInner);
+        buttonAnimation(buttonInner);
 
     });
 }
 document.addEventListener("keydown", function (e) {
     makeSound(e.key);
+    buttonAnimation(e.key);
 })
 
 function makeSound(key) {
@@ -41,4 +43,11 @@ function makeSound(key) {
     }
     let audio = new Audio(file);
     audio.play();
+}
+
+function buttonAnimation(key) {
+    let button = document.querySelector("." + key);
+    button.classList.add("pressed");
+    setTimeout(() => 
+        button.classList.remove("pressed"), 100);
 }
